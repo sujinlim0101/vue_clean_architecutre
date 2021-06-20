@@ -27,7 +27,7 @@ export class APIClient implements NetworkClient{
           method: request.method,
           params: isRead && request.params,
           data: !isRead && request.params,
-          withCredentials: true,
+          // withCredentials: true,
           timeout: this.timeout,
           baseURL: request.baseURL || this.baseURL,
           headers: this.createHeaders()
