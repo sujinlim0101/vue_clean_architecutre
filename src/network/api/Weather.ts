@@ -10,7 +10,7 @@ export namespace WeatherAPI {
     parse = (data: AxiosResponse) => data.data
     // TODO: move city to
     constructor(city: string) {
-      this.path = `/weather?q=${city}&appid=${process.env.VUE_APP_API_KEY}`;
+      this.path = `/weather?q=${city}&appid=${process.env.VUE_APP_API_KEY}&units=metric`;
     }
   }
 }
