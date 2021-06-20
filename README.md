@@ -1,4 +1,4 @@
-# weather_clean_code_project
+# vue clean architecture
 
 ## Project setup
 ```
