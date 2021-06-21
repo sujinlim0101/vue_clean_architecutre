@@ -1,6 +1,6 @@
 <template>
-  <div>Today's weather</div>
-  <div>🇰🇷 Seoul: {{ seoulCurrentWeather }}</div>
+  <h3>오늘의 🇰🇷  서울 날씨</h3>
+  <li v-for="(value, name) in seoulCurrentWeather" v-bind:key="value">{{ name }} : {{ value }}</li>
   <WeatherContainer />
 </template>
 
