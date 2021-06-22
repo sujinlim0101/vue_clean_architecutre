@@ -1,5 +1,5 @@
 <template>
-  <img alt="Vue logo" src="./assets/images/power-girls.png">
+  <img alt="Vue logo" class="main-img" src="./assets/images/power-girls.png">
   <Weather />
 </template>
 
@@ -24,5 +24,9 @@ export default defineComponent({
   color: #2c3e50;
   margin-top: 30px;
   margin-bottom: 70px;
+}
+.main-img {
+  width: 500px;
+  max-width: 100vw;
 }
 </style>
