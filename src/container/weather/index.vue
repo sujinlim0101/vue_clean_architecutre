@@ -11,12 +11,11 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import WeatherRepository from '../../repositories/WeatherRepository'
-import { WeatherObject } from '../../entities/Weather'
 
 export default defineComponent({
   data() {
     return {
-      searchedWeather: {} as WeatherObject,
+      searchedWeather: {},
       weatherRepository: new WeatherRepository(),
       city: '',
       searchedCity: '',
