@@ -1,10 +1,8 @@
 import { AxiosResponse } from 'axios'
 import { APIRequest } from '@/network/APIRequest';
 import { HTTPMethod } from '@/network/apiClient';
-import { IWeather } from '@/entities/Weather';
 export namespace WeatherAPI {
   export class GetWeather implements APIRequest<IWeather> {
-    response!: IWeather;
     path = '/weather';
     method = HTTPMethod.GET;
     parse = (data: AxiosResponse) => data.data
