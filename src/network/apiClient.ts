@@ -37,7 +37,6 @@ export class APIClient implements NetworkClient{
             ? request.parse(data)
             : this.parse<U>(data);
           resolve(response);
-          console.log('response', response);
         })
         .catch(err => {
           const apiError = this.normalizeError(err);

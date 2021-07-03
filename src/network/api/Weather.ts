@@ -13,4 +13,14 @@ export namespace WeatherAPI {
       this.params = { q: city, appid: process.env.VUE_APP_API_KEY, units: 'metrics', lang: 'kr' };
     }
   }
+  export class GetForecast {
+    response!: Object;
+    path = WeatherOfAPI.forecast;
+    method = HTTPMethod.GET;
+    params = {};
+    parse = (data: AxiosResponse) => data.data
+    constructor(city: string) {
+      this.params = { q: city, appid: process.env.VUE_APP_API_KEY, units: 'standard', lang: 'kr' };
+    }
+  }
 }
