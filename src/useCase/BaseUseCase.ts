@@ -1,5 +1,5 @@
 type BaseUseCase = {
-  execute: (params?: any) => Promise<any>
+  execute: (params?: any) => Array<Object> | Object
 }
 
 export default BaseUseCase

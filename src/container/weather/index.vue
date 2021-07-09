@@ -1,5 +1,5 @@
 <template>
-  <h2>날씨를 조회하고 싶은 도시를 입력해보세요.</h2>
+  <h2>Enter city for searching current weather !</h2>
   <form @submit.prevent="sendForm">
     <input v-model='city'>
     <button type='submit'>조회하기</button>
@@ -12,6 +12,7 @@
 import { defineComponent } from 'vue'
 import { WeatherRepository, ForecastRepository } from '../../repositories/WeatherRepository'
 import BaseRepository from '../../repositories/BaseRepository'
+import SearchWaetherUseCase from '../../useCase/SearchWaetherUseCase';
 
 export default defineComponent({
   data() {
@@ -26,7 +27,7 @@ export default defineComponent({
   },
   methods: {
     async getWeather() {
-      const data = await this.weatherRepository.fetchItem(this.city)
+      const data = await new SearchWaetherUseCase(this.city).execute();
       console.log('data', data)
       this.weather = data
       this.searchedCity = this.city
