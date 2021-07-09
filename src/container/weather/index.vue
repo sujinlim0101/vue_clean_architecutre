@@ -11,14 +11,15 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { WeatherRepository, ForecastRepository } from '../../repositories/WeatherRepository'
+import BaseRepository from '../../repositories/BaseRepository'
 
 export default defineComponent({
   data() {
     return {
       weather: {},
       forecast: {},
-      weatherRepository: new WeatherRepository(),
-      forecastRepository: new ForecastRepository(),
+      weatherRepository: new WeatherRepository() as BaseRepository,
+      forecastRepository: new ForecastRepository() as BaseRepository,
       city: '',
       searchedCity: '',
     }
