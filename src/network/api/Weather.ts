@@ -10,7 +10,7 @@ export namespace WeatherAPI {
     params = {};
     parse = (data: AxiosResponse) => data.data
     constructor(city: string) {
-      this.params = { q: city, appid: process.env.VUE_APP_API_KEY, units: 'metrics', lang: 'kr' };
+      this.params = { q: city, appid: process.env.VUE_APP_API_KEY, units: 'metric' };
     }
   }
   export class GetForecast {
@@ -20,7 +20,7 @@ export namespace WeatherAPI {
     params = {};
     parse = (data: AxiosResponse) => data.data
     constructor(city: string) {
-      this.params = { q: city, appid: process.env.VUE_APP_API_KEY, units: 'standard', lang: 'kr' };
+      this.params = { q: city, appid: process.env.VUE_APP_API_KEY, units: 'metric' };
     }
   }
 }
