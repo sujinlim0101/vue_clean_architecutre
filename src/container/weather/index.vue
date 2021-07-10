@@ -13,13 +13,14 @@ import { defineComponent } from 'vue'
 import { WeatherRepository, ForecastRepository } from '../../repositories/WeatherRepository'
 import BaseRepository from '../../repositories/BaseRepository'
 import SearchWaetherUseCase from '../../useCase/SearchWaetherUseCase';
+import { Weather } from '../../entity/Weather';
 
 export default defineComponent({
   data() {
     return {
-      weather: {},
-      forecast: {},
+      weather: {} as Weather,
       weatherRepository: new WeatherRepository() as BaseRepository,
+      forecast: {},
       forecastRepository: new ForecastRepository() as BaseRepository,
       city: '',
       searchedCity: '',
