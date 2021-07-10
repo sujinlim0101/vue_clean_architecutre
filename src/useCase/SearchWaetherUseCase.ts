@@ -14,8 +14,8 @@ export default class SearchWaetherUseCase implements BaseUseCase {
   }
 }
 
-const filterWeatherData = (weather: any) => {
+const filterWeatherData = (weather: any): Weather => {
   const filteredByKey = { ...weather.main, ...weather.weather[0] }
-  const expectedKeys: (keyof Weather)[] = [ 'temp', 'feels_like','temp_min', 'temp_max', 'humidity', 'main', 'description'];
-  return expectedKeys.reduce((obj, key) => ({ ...obj, [key]: filteredByKey[key] }), {});
+  return { 'temp': filteredByKey.temp, 'feels_like': filteredByKey.feels_like, 'temp_min': filteredByKey.temp_min, 'temp_max': filteredByKey.temp_max,
+           'humidity': filteredByKey.humidity, main: filteredByKey.main, description: filteredByKey.description };
 }
