@@ -1,5 +1,4 @@
 import { AxiosResponse } from 'axios'
-import { APIRequest } from '@/network/APIRequest';
 import { HTTPMethod } from '@/network/apiClient';
 import { WeatherOfAPI } from '@/types/WeatherTypes';
 export namespace WeatherAPI {
