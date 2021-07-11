@@ -10,18 +10,15 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { WeatherRepository, ForecastRepository } from '../../repositories/WeatherRepository'
-import BaseRepository from '../../repositories/BaseRepository'
 import SearchWaetherUseCase from '../../useCase/SearchWaetherUseCase';
+import SearchForecastUseCase from '../../useCase/SearchForecastUseCase';
 import { Weather } from '../../entity/Weather';
 
 export default defineComponent({
   data() {
     return {
       weather: {} as Weather,
-      weatherRepository: new WeatherRepository() as BaseRepository,
-      forecast: {},
-      forecastRepository: new ForecastRepository() as BaseRepository,
+      forecast: {} as Weather,
       city: '',
       searchedCity: '',
     }
@@ -29,12 +26,12 @@ export default defineComponent({
   methods: {
     async getWeather() {
       this.weather = await new SearchWaetherUseCase(this.city).execute();
+      console.log('this.weather', this.weather);
       this.searchedCity = this.city
     },
     async getForecast() {
-      const data = await this.forecastRepository.fetchItem(this.city)
-      console.log('forecast', data);
-      this.forecast = data;
+      this.forecast = await new SearchForecastUseCase(this.city).execute();
+      console.log('this.forecast', this.forecast);
     },
     sendForm() {
       this.getWeather()

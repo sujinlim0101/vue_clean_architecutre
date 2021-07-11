@@ -2,7 +2,7 @@ import BaseUseCase from './BaseUseCase';
 import { WeatherRepository } from '../repositories/WeatherRepository';
 import BaseRepository from '../repositories/BaseRepository';
 import { Weather } from '../entity/Weather';
-export default class SearchWaetherUseCase implements BaseUseCase {
+export default class SearchForecastUseCase implements BaseUseCase {
   city: string
   constructor (city: string) {
     this.city = city
