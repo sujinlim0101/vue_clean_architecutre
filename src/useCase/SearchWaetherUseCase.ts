@@ -17,5 +17,5 @@ export default class SearchForecastUseCase implements BaseUseCase {
 const filterWeatherData = (weather: any): Weather => {
   const filteredByKey = { ...weather.main, ...weather.weather[0] }
   return { 'temp': filteredByKey.temp, 'feels_like': filteredByKey.feels_like, 'temp_min': filteredByKey.temp_min, 'temp_max': filteredByKey.temp_max,
-           'humidity': filteredByKey.humidity, main: filteredByKey.main, description: filteredByKey.description };
+           'humidity': filteredByKey.humidity, 'main': filteredByKey.main, 'description': filteredByKey.description };
 }
