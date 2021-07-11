@@ -6,6 +6,8 @@
   </form>
   <h4 class="result" v-if="searchedCity">{{ searchedCity }}의 날씨</h4>
   <li v-for="(value, name) in weather" v-bind:key="value">{{ name }} : {{ value }}</li>
+  <h4 class="result" v-if="forecast.length > 0">{{ searchedCity }}의 예보</h4>
+  <li v-for="weather in forecast" v-bind:key="weather.dt_txt">{{ weather}}</li>
 </template>
 
 <script lang="ts">
@@ -18,7 +20,7 @@ export default defineComponent({
   data() {
     return {
       weather: {} as Weather,
-      forecast: {} as Weather,
+      forecast: {} as Weather[],
       city: '',
       searchedCity: '',
     }
@@ -26,16 +28,14 @@ export default defineComponent({
   methods: {
     async getWeather() {
       this.weather = await new SearchWaetherUseCase(this.city).execute();
-      console.log('this.weather', this.weather);
-      this.searchedCity = this.city
+      this.searchedCity = this.city;
     },
     async getForecast() {
       this.forecast = await new SearchForecastUseCase(this.city).execute();
-      console.log('this.forecast', this.forecast);
     },
     sendForm() {
-      this.getWeather()
-      this.getForecast()
+      this.getWeather();
+      this.getForecast();
     }
   }
 })
