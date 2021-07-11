@@ -3,7 +3,7 @@ import { HTTPMethod } from '@/network/apiClient';
 import { WeatherOfAPI } from '@/types/WeatherTypes';
 export namespace WeatherAPI {
   export class GetWeather {
-    response!: Object;
+    response!: object;
     path = WeatherOfAPI.weather;
     method = HTTPMethod.GET;
     params = {};
@@ -13,7 +13,7 @@ export namespace WeatherAPI {
     }
   }
   export class GetForecast {
-    response!: Object;
+    response!: object;
     path = WeatherOfAPI.forecast;
     method = HTTPMethod.GET;
     params = {};

@@ -1,9 +1,9 @@
 export type Weather = {
-  temp: Number,
-  feels_like : Number,
-  temp_min : Number,
-  temp_max : Number,
-  humidity : Number,
+  temp: number,
+  feels_like : number,
+  temp_min : number,
+  temp_max : number,
+  humidity : number,
   main : string,
   description : string
 }

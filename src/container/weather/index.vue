@@ -4,7 +4,7 @@
     <input v-model='city'>
     <button type='submit'>조회하기</button>
   </form>
-  <h4 class="result" v-if="searchedCity">{{ this.searchedCity }}의 날씨</h4>
+  <h4 class="result" v-if="searchedCity">{{ searchedCity }}의 날씨</h4>
   <li v-for="(value, name) in weather" v-bind:key="value">{{ name }} : {{ value }}</li>
 </template>
 
@@ -28,9 +28,7 @@ export default defineComponent({
   },
   methods: {
     async getWeather() {
-      const data = await new SearchWaetherUseCase(this.city).execute();
-      console.log('data', data)
-      this.weather = data
+      this.weather = await new SearchWaetherUseCase(this.city).execute();
       this.searchedCity = this.city
     },
     async getForecast() {
