@@ -1,5 +1,4 @@
 import BaseUseCase from './BaseUseCase';
-import { ForecastRepository } from '../repositories/WeatherRepository';
 import BaseRepository from '../repositories/BaseRepository';
 import { Weather } from '../entity/Weather';
 
