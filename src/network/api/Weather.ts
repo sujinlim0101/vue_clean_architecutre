@@ -1,10 +1,10 @@
 import { AxiosResponse } from 'axios'
 import { HTTPMethod } from '@/network/apiClient';
-import { WeatherOfAPI } from '@/types/WeatherTypes';
+import { WeatherPath } from '@/types/WeatherPath';
 export namespace WeatherAPI {
   export class GetWeather {
     response!: object;
-    path = WeatherOfAPI.weather;
+    path = WeatherPath.weather;
     method = HTTPMethod.GET;
     params = {};
     parse = (data: AxiosResponse) => data.data
@@ -14,7 +14,7 @@ export namespace WeatherAPI {
   }
   export class GetForecast {
     response!: object;
-    path = WeatherOfAPI.forecast;
+    path = WeatherPath.forecast;
     method = HTTPMethod.GET;
     params = {};
     parse = (data: AxiosResponse) => data.data

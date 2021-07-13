@@ -12,11 +12,12 @@ export default class SearchWaetherUseCase implements BaseUseCase {
   async execute():Promise<Weather[]>{
     const response = await this.forecastRepository.fetchItem(this.city);
     const list = response.list;
+
     const spreadData = list.map(function(weather: any) {
       const obj = { dt_txt: weather.dt_txt, ...weather.main, ...weather.weather[0] }
       return obj
     })
-    const filteredWeather = spreadData.map(function(item: any) {
+    const filteredWeather: Weather[] = spreadData.map(function(item: any) {
       return { dt_txt: item.dt_txt,
         temp: item.temp,
         feels_like: item.feels_like,
@@ -27,7 +28,7 @@ export default class SearchWaetherUseCase implements BaseUseCase {
         description: item.description }
       }
     )
-    console.log('filteredWeather', filteredWeather);
+
     return filteredWeather;
   }
 }

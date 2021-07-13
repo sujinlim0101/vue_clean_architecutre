@@ -40,13 +40,14 @@ import { defineComponent } from 'vue'
 import SearchWaetherUseCase from '../../useCase/SearchWaetherUseCase';
 import SearchForecastUseCase from '../../useCase/SearchForecastUseCase';
 import { Weather } from '../../entity/Weather';
+import { WeatherRepository } from '../../repositories/WeatherRepository';
 
 export default defineComponent({
   data() {
     return {
       weather: {} as Weather | {},
       forecast: {} as Weather[] | [],
-      city: '',
+      city: '' as string,
       searchedCity: '',
       titleToKor: {
         dt_txt: '시간',

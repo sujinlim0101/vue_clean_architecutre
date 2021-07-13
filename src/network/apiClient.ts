@@ -12,7 +12,7 @@ export enum HTTPMethod {
 }
 
 export class APIClient implements NetworkClient{
-  static shared = new APIClient();
+  static shared: NetworkClient = new APIClient();
 
   baseURL: string = 'http://api.openweathermap.org/data/2.5';
   timeout: number = 15 * 1000;
