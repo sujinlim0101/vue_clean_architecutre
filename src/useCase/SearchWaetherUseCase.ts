@@ -4,12 +4,14 @@ import BaseRepository from '../repositories/BaseRepository';
 import { Weather } from '../entity/Weather';
 export default class SearchForecastUseCase implements BaseUseCase {
   city: string
-  constructor (city: string) {
-    this.city = city
+  repository: BaseRepository
+
+  constructor (city: string, repository: BaseRepository) {
+    this.city = city;
+    this.repository = repository
   }
-  private weatherRepository: BaseRepository =  new WeatherRepository();
   async execute() {
-    const weather = await this.weatherRepository.fetchItem(this.city);
+    const weather = await this.repository.fetchItem(this.city);
     return filterWeatherData(weather);
   }
 }

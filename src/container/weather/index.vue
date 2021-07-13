@@ -62,7 +62,7 @@ export default defineComponent({
   },
   methods: {
     async getWeather() {
-      this.weather = await new SearchWaetherUseCase(this.city).execute();
+      this.weather = await new SearchWaetherUseCase(this.city, new WeatherRepository()).execute();
       this.searchedCity = this.city;
     },
     async getForecast() {
