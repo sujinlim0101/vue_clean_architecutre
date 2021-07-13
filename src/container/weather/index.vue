@@ -40,7 +40,7 @@ import { defineComponent } from 'vue'
 import SearchWaetherUseCase from '../../useCase/SearchWaetherUseCase';
 import SearchForecastUseCase from '../../useCase/SearchForecastUseCase';
 import { Weather } from '../../entity/Weather';
-import { WeatherRepository } from '../../repositories/WeatherRepository';
+import { WeatherRepository, ForecastRepository } from '../../repositories/WeatherRepository';
 
 export default defineComponent({
   data() {
@@ -67,7 +67,7 @@ export default defineComponent({
       this.searchedCity = this.city;
     },
     async getForecast() {
-      this.forecast = await new SearchForecastUseCase(this.city).execute();
+      this.forecast = await new SearchForecastUseCase(this.city, new ForecastRepository()).execute();
     },
     sendForm() {
       this.getWeather();

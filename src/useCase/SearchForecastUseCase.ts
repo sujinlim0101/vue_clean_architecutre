@@ -5,12 +5,14 @@ import { Weather } from '../entity/Weather';
 
 export default class SearchWaetherUseCase implements BaseUseCase {
   city: string
-  constructor (city: string) {
+  repository: BaseRepository
+
+  constructor (city: string, repository: BaseRepository) {
     this.city = city
+    this.repository = repository
   }
-  private forecastRepository: BaseRepository =  new ForecastRepository();
   async execute():Promise<Weather[]>{
-    const response = await this.forecastRepository.fetchItem(this.city);
+    const response = await this.repository.fetchItem(this.city);
     const list = response.list;
 
     const spreadData = list.map(function(weather: any) {
