@@ -14,7 +14,7 @@
       <h4 class="result__title" v-if="searchedCity">👒 {{ searchedCity }}'s Today Weather</h4>
       <table>
         <tr>
-          <th v-for="(value, name) in weather" v-bind:key="value">{{ weatherTitle[name].title }}</th>
+          <th v-for="(value, name) in weather" v-bind:key="value">{{ weatherTitle[name] }}</th>
         </tr>
         <tr>
           <th v-for="value in weather" v-bind:key="value">{{ value }}</th>
@@ -25,7 +25,7 @@
       <h4 class="result__title">🧢 {{ searchedCity }}'s Forecast</h4>
       <table>
         <tr>
-          <th v-for="(value, name) in forecast[0]" v-bind:key="value">{{ weatherTitle[name].title }}</th>
+          <th v-for="(value, name) in forecast[0]" v-bind:key="value">{{ weatherTitle[name] }}</th>
         </tr>
         <tr v-for="weather in forecast" v-bind:key="weather.dt_txt">
           <td v-for="detail in weather" v-bind:key="detail">{{ detail }}</td>
@@ -39,7 +39,6 @@
 import { defineComponent } from 'vue'
 import SearchWaetherUseCase from '../../useCase/SearchWaetherUseCase';
 import SearchForecastUseCase from '../../useCase/SearchForecastUseCase';
-import { WeatherEntity } from '../../entity/Weather';
 import { weatherTitle,  WeatherType } from '../../types/Weather';
 import { WeatherRepository, ForecastRepository } from '../../repositories/WeatherRepository';
 
@@ -47,7 +46,7 @@ export default defineComponent({
   data() {
     return {
       weather: {} as WeatherType | {},
-      forecast: {} as WeatherEntity[] | [],
+      forecast: {} as WeatherType[] | [],
       city: '' as string,
       searchedCity: '' as string,
       weatherTitle
@@ -57,7 +56,7 @@ export default defineComponent({
     async getWeather() {
       const weatherResponse = await new SearchWaetherUseCase(this.city, new WeatherRepository()).execute();
       this.weather = { 'temp': weatherResponse.temp, 'feels_like': weatherResponse.feels_like, 'temp_min': weatherResponse.temp_min, 'temp_max': weatherResponse.temp_max,
-          'humidity': weatherResponse.humidity, 'main': weatherResponse.main, 'description': weatherResponse.description };
+                       'humidity': weatherResponse.humidity, 'main': weatherResponse.main, 'description': weatherResponse.description };
       this.searchedCity = this.city;
     },
     async getForecast() {

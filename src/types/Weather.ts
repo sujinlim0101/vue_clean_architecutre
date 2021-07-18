@@ -1,4 +1,3 @@
-import { WeatherEntity } from './../entity/Weather';
 interface WeatherInfo {
   title: string;
 }
@@ -13,15 +12,15 @@ export type WeatherType = {
   description : string,
 }
 
-export const weatherTitle: Record<keyof WeatherType, WeatherInfo> = {
-  dt_txt: { title: '시간' },
-  temp: { title: '온도' },
-  feels_like :{ title: '체감온도' },
-  temp_min : { title: '최저기온'},
-  temp_max : { title: '최고기온' },
-  humidity : { title: '습도' },
-  main : { title: '날씨' },
-  description : { title: '상세' },
+export const weatherTitle = {
+  dt_txt: '시간' ,
+  temp: '온도' ,
+  feels_like: '체감온도',
+  temp_min: '최저기온',
+  temp_max:  '최고기온',
+  humidity: '습도',
+  main: '날씨',
+  description:'상세',
 }
 
 export enum WeatherPath {
