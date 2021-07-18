@@ -1,6 +1,3 @@
-interface WeatherInfo {
-  title: string;
-}
 export type WeatherType = {
   dt_txt?: string,
   temp: number,

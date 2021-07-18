@@ -60,7 +60,18 @@ export default defineComponent({
       this.searchedCity = this.city;
     },
     async getForecast() {
-      this.forecast = await new SearchForecastUseCase(this.city, new ForecastRepository()).execute();
+      const forecastResponse = await new SearchForecastUseCase(this.city, new ForecastRepository()).execute();
+      this.forecast =  forecastResponse.map(function(item: any) {
+        return { dt_txt: item.dt_txt,
+          temp: item.temp,
+          feels_like: item.feels_like,
+          temp_min: item.temp_min,
+          temp_max: item.temp_max,
+          humidity: item.humidity,
+          main: item.main,
+          description: item.description }
+        }
+      )
     },
     sendForm() {
       this.getWeather();

@@ -18,18 +18,6 @@ export default class SearchWaetherUseCase implements BaseUseCase {
       const obj = { dt_txt: weather.dt_txt, ...weather.main, ...weather.weather[0] }
       return obj
     })
-    const filteredWeather: WeatherEntity[] = spreadData.map(function(item: any) {
-      return { dt_txt: item.dt_txt,
-        temp: item.temp,
-        feels_like: item.feels_like,
-        temp_min: item.temp_min,
-        temp_max: item.temp_max,
-        humidity: item.humidity,
-        main: item.main,
-        description: item.description }
-      }
-    )
-
-    return filteredWeather;
+    return spreadData;
   }
 }
