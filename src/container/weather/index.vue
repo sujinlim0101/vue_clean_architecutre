@@ -14,7 +14,7 @@
       <h4 class="result__title" v-if="searchedCity">👒 {{ searchedCity }}'s Today Weather</h4>
       <table>
         <tr>
-          <th v-for="(value, name) in weather" v-bind:key="value">{{ titleToKor[name] }}</th>
+          <th v-for="(value, name) in weather" v-bind:key="value">{{ weatherTitle[name].title }}</th>
         </tr>
         <tr>
           <th v-for="value in weather" v-bind:key="value">{{ value }}</th>
@@ -25,7 +25,7 @@
       <h4 class="result__title">🧢 {{ searchedCity }}'s Forecast</h4>
       <table>
         <tr>
-          <th v-for="(value, name) in forecast[0]" v-bind:key="value">{{ titleToKor[name] }}</th>
+          <th v-for="(value, name) in forecast[0]" v-bind:key="value">{{ weatherTitle[name].title }}</th>
         </tr>
         <tr v-for="weather in forecast" v-bind:key="weather.dt_txt">
           <td v-for="detail in weather" v-bind:key="detail">{{ detail }}</td>
@@ -39,31 +39,25 @@
 import { defineComponent } from 'vue'
 import SearchWaetherUseCase from '../../useCase/SearchWaetherUseCase';
 import SearchForecastUseCase from '../../useCase/SearchForecastUseCase';
-import { Weather } from '../../entity/Weather';
+import { WeatherEntity } from '../../entity/Weather';
+import { weatherTitle,  WeatherType } from '../../types/Weather';
 import { WeatherRepository, ForecastRepository } from '../../repositories/WeatherRepository';
 
 export default defineComponent({
   data() {
     return {
-      weather: {} as Weather | {},
-      forecast: {} as Weather[] | [],
+      weather: {} as WeatherType | {},
+      forecast: {} as WeatherEntity[] | [],
       city: '' as string,
-      searchedCity: '',
-      titleToKor: {
-        dt_txt: '시간',
-        temp: '온도',
-        feels_like: '체감온도',
-        temp_min: '최저기온',
-        temp_max: '최고기온',
-        humidity: '습도',
-        main: '날씨',
-        description: '상세'
-      }
+      searchedCity: '' as string,
+      weatherTitle
     }
   },
   methods: {
     async getWeather() {
-      this.weather = await new SearchWaetherUseCase(this.city, new WeatherRepository()).execute();
+      const weatherResponse = await new SearchWaetherUseCase(this.city, new WeatherRepository()).execute();
+      this.weather = { 'temp': weatherResponse.temp, 'feels_like': weatherResponse.feels_like, 'temp_min': weatherResponse.temp_min, 'temp_max': weatherResponse.temp_max,
+          'humidity': weatherResponse.humidity, 'main': weatherResponse.main, 'description': weatherResponse.description };
       this.searchedCity = this.city;
     },
     async getForecast() {

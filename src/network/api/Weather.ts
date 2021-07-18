@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios'
 import { HTTPMethod } from '@/network/apiClient';
-import { WeatherPath } from '@/types/WeatherPath';
+import { WeatherPath } from '@/types/Weather';
 export namespace WeatherAPI {
   export class GetWeather {
     response!: object;

@@ -1,4 +1,4 @@
-export type Weather = {
+export type WeatherEntity = {
   dt_txt?: string,
   temp: number,
   feels_like : number,
@@ -6,5 +6,8 @@ export type Weather = {
   temp_max : number,
   humidity : number,
   main : string,
-  description : string
+  description : string,
+  icon: string
+  id: number,
+  pressure: number
 }

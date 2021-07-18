@@ -1,6 +1,6 @@
 import BaseUseCase from './BaseUseCase';
 import BaseRepository from '../repositories/BaseRepository';
-import { Weather } from '../entity/Weather';
+import { WeatherEntity } from '../entity/Weather';
 
 export default class SearchWaetherUseCase implements BaseUseCase {
   city: string
@@ -10,7 +10,7 @@ export default class SearchWaetherUseCase implements BaseUseCase {
     this.city = city
     this.repository = repository
   }
-  async execute():Promise<Weather[]>{
+  async execute():Promise<WeatherEntity[]>{
     const response = await this.repository.fetchItem(this.city);
     const list = response.list;
 
@@ -18,7 +18,7 @@ export default class SearchWaetherUseCase implements BaseUseCase {
       const obj = { dt_txt: weather.dt_txt, ...weather.main, ...weather.weather[0] }
       return obj
     })
-    const filteredWeather: Weather[] = spreadData.map(function(item: any) {
+    const filteredWeather: WeatherEntity[] = spreadData.map(function(item: any) {
       return { dt_txt: item.dt_txt,
         temp: item.temp,
         feels_like: item.feels_like,

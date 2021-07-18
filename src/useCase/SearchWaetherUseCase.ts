@@ -1,6 +1,6 @@
 import BaseUseCase from './BaseUseCase';
 import BaseRepository from '../repositories/BaseRepository';
-import { Weather } from '../entity/Weather';
+import { WeatherEntity } from '../entity/Weather';
 export default class SearchForecastUseCase implements BaseUseCase {
   city: string
   repository: BaseRepository
@@ -15,8 +15,6 @@ export default class SearchForecastUseCase implements BaseUseCase {
   }
 }
 
-const filterWeatherData = (weather: any): Weather => {
-  const filteredByKey = { ...weather.main, ...weather.weather[0] }
-  return { 'temp': filteredByKey.temp, 'feels_like': filteredByKey.feels_like, 'temp_min': filteredByKey.temp_min, 'temp_max': filteredByKey.temp_max,
-           'humidity': filteredByKey.humidity, 'main': filteredByKey.main, 'description': filteredByKey.description };
+const filterWeatherData = (weather: any): WeatherEntity => {
+  return { ...weather.main, ...weather.weather[0] }
 }
