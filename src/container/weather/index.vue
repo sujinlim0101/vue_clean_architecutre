@@ -4,7 +4,7 @@
     <form @submit.prevent="sendForm">
       <label for="city" class="visually-hidden">City</label>
       <div class="input__wrapper">
-        <input id="city" class="form-control" type="text" placeholder="Enter City" aria-label="input for city" v-model='city'>
+        <input id="city" class="form-control" type="text" placeholder="ex) seoul" aria-label="input for city" v-model='city'>
       </div>
       <div>
         <button type="submit" class="btn btn-primary mb-3">조회하기</button>
