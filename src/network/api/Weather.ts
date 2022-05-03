@@ -1,16 +1,25 @@
 import { AxiosResponse } from 'axios'
-import { APIRequest } from '@/network/APIRequest';
 import { HTTPMethod } from '@/network/apiClient';
-import { IWeather } from '@/entities/Weather';
+import { WeatherPath } from '@/types/Weather';
 export namespace WeatherAPI {
-  export class GetWeather implements APIRequest<IWeather> {
-    response!: IWeather;
-    path = '/weather';
+  export class GetWeather {
+    response!: object;
+    path = WeatherPath.weather;
     method = HTTPMethod.GET;
+    params = {};
     parse = (data: AxiosResponse) => data.data
-    // TODO: move city to
     constructor(city: string) {
-      this.path = `/weather?q=${city}&appid=${process.env.VUE_APP_API_KEY}&units=metric`;
+      this.params = { q: city, appid: process.env.VUE_APP_API_KEY, units: 'metric' };
+    }
+  }
+  export class GetForecast {
+    response!: object;
+    path = WeatherPath.forecast;
+    method = HTTPMethod.GET;
+    params = {};
+    parse = (data: AxiosResponse) => data.data
+    constructor(city: string) {
+      this.params = { q: city, appid: process.env.VUE_APP_API_KEY, units: 'metric' };
     }
   }
 }

@@ -12,9 +12,9 @@ export enum HTTPMethod {
 }
 
 export class APIClient implements NetworkClient{
-  static shared = new APIClient();
+  static shared: NetworkClient = new APIClient();
 
-  baseURL: string = 'http://api.openweathermap.org/data/2.5';
+  baseURL: string = 'https://api.openweathermap.org/data/2.5';
   timeout: number = 15 * 1000;
 
   request<U extends APIResponse>(request: APIRequest<U>): Promise<U> {
@@ -37,7 +37,6 @@ export class APIClient implements NetworkClient{
             ? request.parse(data)
             : this.parse<U>(data);
           resolve(response);
-          console.log('response', response);
         })
         .catch(err => {
           const apiError = this.normalizeError(err);

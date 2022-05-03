@@ -1,13 +1,13 @@
 import BaseRepository from '@/repositories/BaseRepository'
 import { APIClient } from '@/network/apiClient'
 import { WeatherAPI } from '@/network/api/Weather'
-import { IWeather } from '@/entities/Weather'
-
-export default class WeatherRepository implements BaseRepository {
-  constructor() {
-
-  }
-  async fetchItem(city: string): Promise<IWeather> {
+export class WeatherRepository implements BaseRepository {
+  async fetchItem(city: string): Promise<object> {
     return await APIClient.shared.request(new WeatherAPI.GetWeather(city))
+  }
+}
+export class ForecastRepository implements BaseRepository {
+  async fetchItem(city: string): Promise<object> {
+    return await APIClient.shared.request(new WeatherAPI.GetForecast(city))
   }
 }
